@@ -1,4 +1,3 @@
-# https://keepcoding.io/blog-frr/tutorial-cifrado-cesar-en-python/
 import argparse
 
 parser = argparse.ArgumentParser(description = 'encrypt text using caesar cypher', prog = "caesar's code", usage = '%(prog)s [options]')
@@ -10,14 +9,16 @@ alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
 k=args.key
 
-decypher = ''
+def decode(private_key):
+    # https://keepcoding.io/blog-frr/tutorial-cifrado-cesar-en-python/
+    decypher = ''
+    for char in input:
+        if char in alphabet:
+            new_index = (alphabet.index(char) + k) % len(alphabet)
+            decypher += alphabet[new_index]
+        else:
+            decypher += char
 
-for char in input:
-    if char in alphabet:
-        new_index = (alphabet.index(char) + k) % len(alphabet)
-        decypher += alphabet[new_index]
-    else:
-        decypher += char
+    return decypher
 
-
-print(decypher)
+print(decode(k))
