@@ -1,24 +1,19 @@
 import argparse
 
 parser = argparse.ArgumentParser(description = 'encrypt text using caesar cypher', prog = "caesar's code", usage = '%(prog)s [options]')
-parser.add_argument('-k','--key', type = int, required = True, help='private key')
+parser.add_argument('-s','--shift', type = int, required = True, help='number of positions to shift the key')
 args = parser.parse_args()
 
 input = 'ezevkvveky tveklip'
-alphabet = 'abcdefghijklmnopqrstuvwxyz'
+key = 'abcdefghijklmnopqrstuvwxyz'
 
-k=args.key
+def caesar_cypher(char, shift):
+    ''' https://en.wikipedia.org/wiki/Caesar_cipher
+        https://keepcoding.io/blog-frr/tutorial-cifrado-cesar-en-python/
+    '''
+    return key[((key.index(char) + shift) % len(key))]
 
-def decode(private_key):
-    # https://keepcoding.io/blog-frr/tutorial-cifrado-cesar-en-python/
-    decypher = ''
-    for char in input:
-        if char in alphabet:
-            new_index = (alphabet.index(char) + k) % len(alphabet)
-            decypher += alphabet[new_index]
-        else:
-            decypher += char
+def decode(shift):
+    return ''.join([caesar_cypher(c, shift) if c in key else c for c in input])
 
-    return decypher
-
-print(decode(k))
+print(decode(args.shift))
