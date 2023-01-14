@@ -8,10 +8,9 @@ def caesar_cypher(char_idx, char, shift, key):
 def vigenere_cypher(char_idx, char, table, key):
     ''' https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher
     '''
-    table_item = table[char_idx % len(table)]
-    shift = key.index(table_item)
+    shift = key.index(table[char_idx % len(table)])
     return key[((key.index(char) + shift) % len(key))]
-    
+
 
 def encrypt(*args):
     '''
