@@ -12,11 +12,11 @@ def vigenere_cypher(char_idx, char, table, key):
     return key[((key.index(char) + shift) % len(key))]
 
 
-def encrypt(*args):
+def encrypt(cypher, input, shift, key):
     '''
         0 : cypher function
         1 : input
         2 : shift
         3 : key
     '''
-    return ''.join([args[0](i, c, args[2], args[3]) if c in args[3] else c for (i, c) in enumerate(args[1])])
+    return ''.join([cypher(i, c, shift, key) if c in key else c for (i, c) in enumerate(input)])
