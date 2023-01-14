@@ -1,5 +1,5 @@
 from parse import args_parse
-from cypher import caesar_cypher, vigenere_cypher, encrypt
+from cypher import caesar_cypher, encrypt
 
 
 args = args_parse()
