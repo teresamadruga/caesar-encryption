@@ -1,5 +1,4 @@
 '''Function that cyphers the input according to the command line arguments'''
-# import sys
 from parse import args_parse
 from cypher import caesar_cypher, vigenere_cypher, encrypt
 
@@ -16,5 +15,3 @@ def main():
 
 
 main()
-# if __name__ == '__main__':
-#     sys.exit(main())
