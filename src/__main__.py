@@ -1,15 +1,14 @@
-'''Function that cyphers the input according to the command line arguments'''
+"""Function that cyphers the input according to the command line arguments"""
+from cypher import caesar_cypher, encrypt, vigenere_cypher
 from parse import args_parse
-from cypher import caesar_cypher, vigenere_cypher, encrypt
 
 
 def main():
-    ''' Cypher the input according to the command line arguments.
-    '''
+    """Cypher the input according to the command line arguments."""
     args = args_parse()
-    if args.command == 'caesar':
+    if args.command == "caesar":
         print(encrypt(caesar_cypher, args.prompt, args.shift, args.key))
-    elif args.command == 'vigenere':
+    elif args.command == "vigenere":
         print(encrypt(vigenere_cypher, args.prompt, args.shift, args.key))
     return 0
 
