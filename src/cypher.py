@@ -21,7 +21,10 @@ def vigenere_cypher(char_idx, char, table, key):
     in an alphabet(key) by the displacement value(shift).
     https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher
     """
-    shift = key.index(table[char_idx % len(table)]) if char in key else 0
+    shift = (
+        key.index(table[char_idx % len(table)])
+        if table[char_idx % len(table)] in key else 0
+    )
     return key[((key.index(char) + shift) % len(key))]
 
 
@@ -30,6 +33,6 @@ def encrypt(cypher, prompt, shift, key):
     TODO: args
     """
     return "".join(
-        [cypher(i, c, shift, key)
+        [cypher(i, c, shift, key) 
             if c in key else c for (i, c) in enumerate(prompt)]
     )
