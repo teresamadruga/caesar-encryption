@@ -6,11 +6,8 @@ ALPHABETS = {
     "en": "abcdefghijklmnopqrstuvwxyz",
     "es": "abcdefghijklmnñopqrstuvwxyz"}
 
-# input = 'ezevkvveky tveklip'
 
-
-# TODO: divide the function in two, 1 retrieve args and 2 process args
-def args_parse():
+def retrieve_args():
     """Parses command line arguments"""
     parser = argparse.ArgumentParser(
         description="encrypt text using caesar cypher",
@@ -54,16 +51,22 @@ def args_parse():
         + " the alphabet(key)",
     )
 
-    args = parser.parse_args()
+    return parser.parse_args()
+
+
+def get_input():
+    '''Preprocesses the input'''
+    args = retrieve_args()
     prompt = ""
     if args.text != "":
-        prompt += args.text.lower()
+        prompt += args.text
     if args.filename is not None:
         # TODO: implement read file
         prompt += " " + args.filename
-    args.prompt = prompt
+    args.prompt = prompt.lower()
     if args.command == "vigenere":
         args.shift = args.vigenere_table
     args.key = ALPHABETS[args.alphabet]
 
     return args
+
