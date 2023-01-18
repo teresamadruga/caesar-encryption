@@ -33,6 +33,6 @@ def encrypt(cypher, prompt, shift, key):
     TODO: args
     """
     return "".join(
-        [cypher(i, c, shift, key) 
+        [cypher(i, c, shift, key)
             if c in key else c for (i, c) in enumerate(prompt)]
     )

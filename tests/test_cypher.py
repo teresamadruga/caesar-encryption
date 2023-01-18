@@ -36,3 +36,19 @@ def test_on_vigenere_non_alphabets():
         encrypt(vigenere_cypher, "attackatdawn", "l3m0n", ALPHABETS["en"])
         == "ltfapvafdnhn"
     )
+
+
+def test_on_inverse_vigenere_alphabets():
+    """Test vigenere code result"""
+    assert (
+        encrypt(vigenere_cypher, "lxfopvefrnhr", "lemon", ALPHABETS["en"])
+        == "attackatdawn"
+    )
+
+
+def test_on_inverse_vigenere_non_alphabets():
+    """Test vigenere code result"""
+    assert (
+        encrypt(vigenere_cypher, "ltfapvafdnhn", "l3m0n", ALPHABETS["en"])
+        == "attackatdawn"
+    )
