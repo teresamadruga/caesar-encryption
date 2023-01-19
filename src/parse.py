@@ -50,6 +50,14 @@ def retrieve_args():
         + " the number of displaced positions of shift"
         + " the alphabet(key)",
     )
+    vigenere.add_argument(
+        "-i",
+        "--inverse",
+        dest="inverse",
+        default=False,
+        action="store_true",
+        help="option to code/decode vigenere cypher",
+    )
 
     return parser.parse_args()
 
@@ -68,5 +76,6 @@ def get_input():
         args.shift = args.vigenere_table
     args.key = ALPHABETS[args.alphabet]
 
+    print(f"{args.inverse = }")
     return args
 
