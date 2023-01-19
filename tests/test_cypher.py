@@ -2,7 +2,7 @@
 
 import pytest
 
-from src.cypher import caesar_cypher, encrypt, vigenere_cypher
+from src.cypher import caesar_cypher, encrypt, inverse_vigenere_cypher, vigenere_cypher
 from src.parse import ALPHABETS
 
 
@@ -41,7 +41,7 @@ def test_on_vigenere_non_alphabets():
 def test_on_inverse_vigenere_alphabets():
     """Test vigenere code result"""
     assert (
-        encrypt(vigenere_cypher, "lxfopvefrnhr", "lemon", ALPHABETS["en"])
+        encrypt(inverse_vigenere_cypher, "lxfopvefrnhr", "lemon", ALPHABETS["en"])
         == "attackatdawn"
     )
 
@@ -49,6 +49,6 @@ def test_on_inverse_vigenere_alphabets():
 def test_on_inverse_vigenere_non_alphabets():
     """Test vigenere code result"""
     assert (
-        encrypt(vigenere_cypher, "ltfapvafdnhn", "l3m0n", ALPHABETS["en"])
+        encrypt(inverse_vigenere_cypher, "ltfapvafdnhn", "l3m0n", ALPHABETS["en"])
         == "attackatdawn"
     )

@@ -12,6 +12,22 @@ def caesar_cypher(char_idx, char, shift, key):
     return key[((key.index(char) + shift) % len(key))]
 
 
+def inverse_vigenere_cypher(char_idx, char, table, key):
+    """Cyphers a character with vigenere cypher, a variant of caesar cypher.
+    TODO: args
+    First it calculates the displacement value(shift), given the character
+    position and a key phrase.
+    Then the character is encrypted by displacing its position
+    in an alphabet(key) by the displacement value(shift).
+    https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher
+    """
+    shift = (
+        len(key) - key.index(table[char_idx % len(table)])
+        if table[char_idx % len(table)] in key else 0
+    )
+    return key[((key.index(char) + shift) % len(key))]
+
+
 def vigenere_cypher(char_idx, char, table, key):
     """Cyphers a character with vigenere cypher, a variant of caesar cypher.
     TODO: args
