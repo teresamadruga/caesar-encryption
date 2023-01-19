@@ -1,5 +1,5 @@
 """Function that cyphers the input according to the command line arguments"""
-from cypher import caesar_cypher, encrypt, vigenere_cypher
+from cypher import caesar_cypher, encrypt, inverse_vigenere_cypher, vigenere_cypher
 from parse import get_input
 
 
@@ -8,9 +8,12 @@ def main():
     args = get_input()
     if args.command == "caesar":
         print(encrypt(caesar_cypher, args.prompt, args.shift, args.key))
-    elif args.command == "vigenere":
+    elif args.command == "vigenere" and not args.inverse:
         print(encrypt(vigenere_cypher, args.prompt, args.shift, args.key))
+    elif args.command == "vigenere" and args.inverse:
+        print(encrypt(inverse_vigenere_cypher, args.prompt, args.shift, args.key))
     return 0
 
 
-main()
+if __name__ == "__main__":
+    main()
