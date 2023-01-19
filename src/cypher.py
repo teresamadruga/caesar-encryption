@@ -1,7 +1,7 @@
 """Functions to encrypt"""
 
 
-def caesar_cypher(char_idx, char, shift, key):
+def caesar_cypher(char_data, shift, key):
     """Cyphers a character with caesar cypher.
     TODO: args
     The character is encrypted by displacing its position
@@ -9,39 +9,39 @@ def caesar_cypher(char_idx, char, shift, key):
     https://en.wikipedia.org/wiki/Caesar_cipher
     https://keepcoding.io/blog-frr/tutorial-cifrado-cesar-en-python/
     """
-    return key[((key.index(char) + shift) % len(key))]
+    return key[((key.index(char_data[1]) + shift) % len(key))]
 
 
-def inverse_vigenere_cypher(char_idx, char, table, key):
-    """Cyphers a character with vigenere cypher, a variant of caesar cypher.
+def inverse_vigenere_cypher(char_data, shift, key):
+    """Decyphers a character with vigenere cypher, a variant of caesar cypher.
     TODO: args
-    First it calculates the displacement value(shift), given the character
-    position and a key phrase.
+    First it calculates the displacement value, given the character
+    position and a shift phrase.
     Then the character is encrypted by displacing its position
     in an alphabet(key) by the displacement value(shift).
     https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher
     """
-    shift = (
-        len(key) - key.index(table[char_idx % len(table)])
-        if table[char_idx % len(table)] in key else 0
+    displacement = (
+        len(key) - key.index(shift[char_data[0] % len(shift)])
+        if shift[char_data[0] % len(shift)] in key else 0
     )
-    return key[((key.index(char) + shift) % len(key))]
+    return key[((key.index(char_data[1]) + displacement) % len(key))]
 
 
-def vigenere_cypher(char_idx, char, table, key):
+def vigenere_cypher(char_data, shift, key):
     """Cyphers a character with vigenere cypher, a variant of caesar cypher.
     TODO: args
-    First it calculates the displacement value(shift), given the character
-    position and a key phrase.
+    First it calculates the displacement value, given the character
+    position and a shift phrase.
     Then the character is encrypted by displacing its position
     in an alphabet(key) by the displacement value(shift).
     https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher
     """
-    shift = (
-        key.index(table[char_idx % len(table)])
-        if table[char_idx % len(table)] in key else 0
+    displacement = (
+        key.index(shift[char_data[0] % len(shift)])
+        if shift[char_data[0] % len(shift)] in key else 0
     )
-    return key[((key.index(char) + shift) % len(key))]
+    return key[((key.index(char_data[1]) + displacement) % len(key))]
 
 
 def encrypt(cypher, prompt, shift, key):
@@ -49,6 +49,6 @@ def encrypt(cypher, prompt, shift, key):
     TODO: args
     """
     return "".join(
-        [cypher(i, c, shift, key)
+        [cypher((i, c), shift, key)
             if c in key else c for (i, c) in enumerate(prompt)]
     )
